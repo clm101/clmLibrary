@@ -19,8 +19,6 @@ find_package(Vulkan MODULE REQUIRED)
 target_include_directories(
 	clmLibrary
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
-	${CMAKE_CURRENT_SOURCE_DIR}/clmMath
-	${CMAKE_CURRENT_SOURCE_DIR}/clmUtil
 	${Vulkan_INCLUDE_DIR}
 )
 target_link_libraries(
