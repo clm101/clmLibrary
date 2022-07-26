@@ -14,11 +14,6 @@ This file contains a random assortment of useful utility functions with no reaso
 #include <clm_concepts_ext.h>
 
 namespace clm::util {
-#ifdef _DEBUG
-	extern constexpr bool release = false;
-#else
-	extern constexpr bool release = true;
-#endif
 
 	extern inline bool compare(const std::string& str1, const std::string& str2)
 	{

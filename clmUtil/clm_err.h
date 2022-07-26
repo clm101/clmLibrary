@@ -23,7 +23,7 @@ namespace clm::err {
 	template<Exception E>
 	void assert(bool condition, 
 				std::string msg, 
-				std::source_location location = std::source_location::current()) noexcept(util::release)
+				std::source_location location = std::source_location::current())
 	{
 #ifdef _DEBUG
 		if (!condition)
