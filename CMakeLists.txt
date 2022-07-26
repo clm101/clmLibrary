@@ -16,6 +16,11 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/benchmark")
 
 find_package(Vulkan MODULE REQUIRED)
 
+target_compile_options(
+	clmLibrary 
+	PUBLIC /Zc:externConstexpr
+)
+
 target_include_directories(
 	clmLibrary
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
