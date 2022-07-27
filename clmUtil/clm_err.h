@@ -140,6 +140,16 @@ namespace clm::err {
 		std::source_location exceptionLoc;
 		std::string strMsg;
 	};
+
+	class vk_runtime_error : public std::exception {
+	public:
+		vk_runtime_error(VkResult,
+						 std::string_view,
+						 std::source_location = std::source_location::current()) noexcept;
+		const char* what() const noexcept override;
+	private:
+		std::string m_msg;
+	};
 }
 
 #endif

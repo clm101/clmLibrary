@@ -41,4 +41,23 @@ namespace clm::err {
 	{
 		return m_msg.c_str();
 	}
+
+	vk_runtime_error::vk_runtime_error(VkResult result,
+									   std::string_view msg,
+									   std::source_location loc) noexcept
+		:
+		std::exception()
+	{
+		m_msg = std::format("{} Code: {}\nFile: {}\nFunction: {}\nLine: {}",
+							msg,
+							static_cast<uint32_t>(result),
+							loc.file_name(),
+							loc.function_name(),
+							loc.line());
+	}
+
+	const char* vk_runtime_error::what() const noexcept
+	{
+		return m_msg.c_str();
+	}
 }
