@@ -5,7 +5,7 @@
 namespace clm::err {
 	void assert(bool condition,
 				std::string msg,
-				std::source_location location = std::source_location::current())
+				std::source_location location)
 	{
 #ifdef _DEBUG
 		if (!condition)
@@ -75,5 +75,20 @@ namespace clm::err {
 	const char* vk_runtime_error::what() const noexcept
 	{
 		return m_msg.c_str();
+	}
+
+	void vk_assert(VkResult result,
+				   VkResult accepted,
+				   std::string_view errorMsg,
+				   std::source_location loc)
+	{
+#ifdef _DEBUG
+		if (!(result & accepted))
+		{
+			throw vk_runtime_error(result,
+								   errorMsg,
+								   loc);
+		}
+#endif
 	}
 }

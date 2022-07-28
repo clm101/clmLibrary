@@ -135,6 +135,11 @@ namespace clm::err {
 	private:
 		std::string m_msg;
 	};
+
+	void vk_assert(VkResult, 
+				   VkResult, 
+				   std::string_view, 
+				   std::source_location = std::source_location::current());
 }
 
 #endif
