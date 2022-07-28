@@ -5,7 +5,7 @@
 namespace clm::err {
 	void assert(bool condition,
 				std::string msg,
-				std::source_location location = std::source_location::current())
+				std::source_location location)
 	{
 #ifdef _DEBUG
 		if (!condition)
