@@ -3,6 +3,22 @@
 #include <format>
 
 namespace clm::err {
+	void assert(bool condition,
+				std::string msg,
+				std::source_location location = std::source_location::current())
+	{
+#ifdef _DEBUG
+		if (!condition)
+		{
+			throw std::runtime_error(std::format("{}\nFile: {}\nFunction: {}\nLine: {}",
+												 msg,
+												 location.file_name(),
+												 location.function_name(),
+												 location.line()));
+		}
+#endif
+	}
+
 	WindowsExceptionBase::WindowsExceptionBase(HRESULT hr, const std::source_location& loc) noexcept
 		:
 		slErrorLoc(loc)

@@ -18,24 +18,9 @@
 #endif
 
 namespace clm::err {
-	template<typename T>
-	concept Exception = requires(T t, std::string msg) { t = T{msg}; }&& std::derived_from<T, std::exception>;
-	template<Exception E>
-	void assert(bool condition, 
-				std::string msg, 
-				std::source_location location = std::source_location::current())
-	{
-#ifdef _DEBUG
-		if (!condition)
-		{
-			throw E{std::format("{}\nFile: {}\nFunction: {}\nLine: {}",
-								msg,
-								location.file_name(),
-								location.function_name(),
-								location.line())};
-		}
-#endif
-	}
+	void assert(bool condition,
+				std::string msg,
+				std::source_location location = std::source_location::current());
 
 	class WindowsExceptionBase : public std::exception {
 	public:
